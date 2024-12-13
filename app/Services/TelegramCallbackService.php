@@ -109,8 +109,6 @@ class TelegramCallbackService
                 ->sendInlineKeyboard($this->user->chat_id, $message, $keyboard);
         }
 
-
-        // Callback tariff
         if (str_starts_with($callback, 'tariff_')) {
 
             (new TelegramSendingService())->answerCallback($this->user->chat_id, $callback_id, '✅');

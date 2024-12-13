@@ -46,20 +46,20 @@ class TelegramActionsService
                         'url' => env('TELEGRAM_BOT_CHANNEL_INVITE_PROD')
                     ]
                 ],
-                [
-                    [
-                        'text' => 'Shaxsiy hisob',
-                        'web_app' => [
-                            'url' => "https://jahoncommunitybot.uz/telegram"
-                        ]
-                    ]
-                ],
-                [
-                    [
-                        'text' => '💳 Tariflar',
-                        'callback_data' => 'action_tariff'
-                    ],
-                ],
+//                [
+//                    [
+//                        'text' => 'Shaxsiy hisob',
+//                        'web_app' => [
+//                            'url' => "https://jahoncommunitybot.uz/telegram"
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    [
+//                        'text' => '💳 Tariflar',
+//                        'callback_data' => 'action_tariff'
+//                    ],
+//                ],
                 [
                     [
                         'text' => "🤵 Menejer bilan bog'lanish",

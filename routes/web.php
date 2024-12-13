@@ -1,28 +1,24 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\PictureController;
+use App\Http\Controllers\Web\TelegramDataController;
+use App\Http\Controllers\Admin\Users\UserAdminController;
 use App\Http\Controllers\Admin\Plans\PlansAdminController;
 use App\Http\Controllers\Admin\Setting\SettingAdminController;
-use App\Http\Controllers\Admin\Users\UserAdminController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\Web\TelegramDataController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     return abort(404);
 });
 
 Route::prefix('admin')->group(function () {
-
     Route::middleware('guest:admin')->group(function() {
         Route::view('login', 'admin.login')->name('login');
         Route::post('auth', [UserAdminController::class, 'auth'])->name('admin_auth');
     });
 
     Route::middleware(['auth:admin'])->group(function() {
-
-
         Route::get('', [UserAdminController::class, 'index'])
             ->name('admin_index');
 
@@ -71,6 +67,7 @@ Route::get('referrals', function (\Illuminate\Http\Request $request) {
     return view('web.referrals');
 })->name('referrals');
 
+Route::post('card/bind', [CardController::class, 'bindCard'])->name('card.bind');
 Route::post('referrals/link', function(\Illuminate\Http\Request $request) {
 
     $link = auth()->user()->getTelegramReferralLink();
@@ -84,5 +81,3 @@ Route::get('telegram', [TelegramDataController::class, 'index'])->name('telegram
 Route::post('check', [TelegramDataController::class, 'telegramCheck'])->name('telegram_check');
 
 Route::get('checkout/{id?}/{user_id?}', [OrderController::class, 'show'])->name('checkout.show');
-
-

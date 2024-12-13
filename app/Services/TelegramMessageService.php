@@ -2,11 +2,8 @@
 
 namespace App\Services;
 
-use App\Actions\PhoneValidateAction;
-use App\Models\Setting;
 use App\Models\User;
-use App\Services\Referrer\TelegramReferrerService;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Setting;
 
 class TelegramMessageService
 {
@@ -35,11 +32,9 @@ class TelegramMessageService
 //                (new TelegramActionsService($this->user, $this->setting))->subscribe();
 //            }
 
-//            // Назад
-//            if ($message == '⬅ Orqaga' && ($this->user->step == 'referral' || $this->user->step == 'subscribe')) {
-//                (new TelegramActionsService($this->user, $this->setting))->defaultMenu();
-//            }
-
+            if ($message == '⬅ Orqaga' && ($this->user->step == 'referral' || $this->user->step == 'subscribe')) {
+                (new TelegramActionsService($this->user, $this->setting))->defaultMenu();
+            }
         } else {
             if (!$this->user->status) {
                 (new TelegramSendingService())->sendMessage($this->user->chat_id,
